@@ -1,29 +1,32 @@
-<?php// PilotoController.php
-
-require_once '.../Models/PilotoModel.php';
+<?php
+// PilotoController.php
 
 class PilotoController {
-    public function listar() {
-        $pilotos = PilotoModel::listarPilotos();
-        // Chama a visualização para exibir a lista de Pilotos
-        include 'view/piloto/index.php';
+    private $pilotoModel;
+
+    public function __construct() {
+        // Inicializa o modelo de piloto
+        $this->pilotoModel = new PilotoModel();
     }
 
-    public function adicionar($novaPiloto) {
-        PilotoModel::adicionarPiloto($novaPiloto);
-        // Redireciona para a página de listagem de Pilotos após adicionar
-        header('Location: /piloto/listar');
+    public function adicionarPiloto($nome, $idade, $peso, $pais, $equipe) {
+        // Adiciona um novo piloto
+        $this->pilotoModel->adicionarPiloto($nome, $idade, $peso, $pais, $equipe);
     }
 
-    public function excluir($id) {
-        PilotoModel::excluirPiloto($id);
-        // Redireciona para a página de listagem de Pilotos após excluir
-        header('Location: /piloto/listar');
+    public function listarPilotos() {
+        // Lista os pilotos
+        return $this->pilotoModel->listarPilotos();
     }
 
-    public function atualizar($id, $novosDados) {
-        PilotoModel::atualizarPiloto($id, $novosDados);
-        // Redireciona para a página de listagem de Pilotos após atualizar
-        header('Location: /piloto/listar');
+    public function excluirPiloto($indice) {
+        // Exclui um piloto
+        $this->pilotoModel->excluirPiloto($indice);
+    }
+
+    public function atualizarPiloto($indice, $novosDados) {
+        // Atualiza um piloto
+        $this->pilotoModel->atualizarPiloto($indice, $novosDados);
     }
 }
+?>

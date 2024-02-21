@@ -1,29 +1,32 @@
-<?php// PistaController.php
-
-require_once '.../Models/PistaModel.php';
+<?php
+// PistaController.php
 
 class PistaController {
-    public function listar() {
-        $pistas = PistaModel::listarPistas();
-        // Chama a visualização para exibir a lista de pistas
-        include 'view/pista/index.php';
+    private $pistaModel;
+
+    public function __construct() {
+        // Inicializa o modelo de pista
+        $this->pistaModel = new PistaModel();
     }
 
-    public function adicionar($novaPista) {
-        PistaModel::adicionarPista($novaPista);
-        // Redireciona para a página de listagem de pistas após adicionar
-        header('Location: /pista/listar');
+    public function adicionarPista($cidade, $distancia, $pais, $idioma) {
+        // Adiciona uma nova pista
+        $this->pistaModel->adicionarPista($cidade, $distancia, $pais, $idioma);
     }
 
-    public function excluir($id) {
-        PistaModel::excluirPista($id);
-        // Redireciona para a página de listagem de pistas após excluir
-        header('Location: /pista/listar');
+    public function listarPistas() {
+        // Lista as pistas
+        return $this->pistaModel->listarPistas();
     }
 
-    public function atualizar($id, $novosDados) {
-        PistaModel::atualizarPista($id, $novosDados);
-        // Redireciona para a página de listagem de pistas após atualizar
-        header('Location: /pista/listar');
+    public function excluirPista($indice) {
+        // Exclui uma pista
+        $this->pistaModel->excluirPista($indice);
+    }
+
+    public function atualizarPista($indice, $novosDados) {
+        // Atualiza uma pista
+        $this->pistaModel->atualizarPista($indice, $novosDados);
     }
 }
+?>

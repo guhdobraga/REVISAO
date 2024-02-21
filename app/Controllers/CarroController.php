@@ -1,29 +1,32 @@
-<?php// CarroController.php
-
-
+<?php
 // CarroController.php
 
-require_once 'C:\xampp\htdocs\revisão-array\app\Models\CarroModel.php';
-
 class CarroController {
-    public function listar() {
-        $carroModel = new CarroModel();
-        $carros = $carroModel->listarCarros();
-        include '.../Views/carro/index.php';
+    private $carroModel;
+
+    public function __construct() {
+        // Inicializa o modelo de carro
+        $this->carroModel = new CarroModel();
     }
 
-    public function adicionar($novaCarro) {
-        CarroModel::adicionarCarro($novaCarro);
-        header('Location: /Carro/listar');
+    public function adicionarCarro($modelo, $cor, $ano_fabricacao, $equipe) {
+        // Adiciona um novo carro
+        $this->carroModel->adicionarCarro($modelo, $cor, $ano_fabricacao, $equipe);
     }
 
-    public function excluir($indice) {
-        CarroModel::excluirCarro($indice);
-        header('Location: /Carro/listar');
+    public function listarCarros() {
+        // Lista os carros
+        return $this->carroModel->listarCarros();
     }
 
-    public function atualizar($indice, $novosDados) {
-        CarroModel::atualizarCarro($indice, $novosDados);
-        header('Location: /Carro/listar');
+    public function excluirCarro($indice) {
+        // Exclui um carro
+        $this->carroModel->excluirCarro($indice);
+    }
+
+    public function atualizarCarro($indice, $novosDados) {
+        // Atualiza um carro
+        $this->carroModel->atualizarCarro($indice, $novosDados);
     }
 }
+?>

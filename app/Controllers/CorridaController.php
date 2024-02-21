@@ -1,29 +1,32 @@
-<?php// CorridaController.php
-
-require_once '.../Models/CorridaModel.php';
+<?php
+// CorridaController.php
 
 class CorridaController {
-    public function listar() {
-        $corridas = CorridaModel::listarCorridas();
-        // Chama a visualização para exibir a lista de Corridas
-        include 'view/corrida/index.php';
+    private $corridaModel;
+
+    public function __construct() {
+        // Inicializa o modelo de corrida
+        $this->corridaModel = new CorridaModel();
     }
 
-    public function adicionar($novaCorrida) {
-        CorridaModel::adicionarCorrida($novaCorrida);
-        // Redireciona para a página de listagem de Corridas após adicionar
-        header('Location: /Corrida/listar');
+    public function adicionarCorrida($pista, $data, $pilotos, $carros, $equipe) {
+        // Adiciona um novo corrida
+        $this->corridaModel->adicionarCorrida($pista, $data, $pilotos, $carros, $equipe);
     }
 
-    public function excluir($id) {
-        CorridaModel::excluirCorrida($id);
-        // Redireciona para a página de listagem de Corridas após excluir
-        header('Location: /Corrida/listar');
+    public function listarCorridas() {
+        // Lista os corridas
+        return $this->corridaModel->listarCorridas();
     }
 
-    public function atualizar($id, $novosDados) {
-        CorridaModel::atualizarCorrida($id, $novosDados);
-        // Redireciona para a página de listagem de Corridas após atualizar
-        header('Location: /Corrida/listar');
+    public function excluirCorrida($indice) {
+        // Exclui um corrida
+        $this->corridaModel->excluirCorrida($indice);
+    }
+
+    public function atualizarCorrida($indice, $novosDados) {
+        // Atualiza um corrida
+        $this->corridaModel->atualizarCorrida($indice, $novosDados);
     }
 }
+?>

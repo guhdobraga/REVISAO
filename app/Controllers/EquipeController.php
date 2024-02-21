@@ -1,30 +1,32 @@
-<?php// EquipeController.php
+<?php
+// EquipesController.php
 
-require_once '.../Models/EquipeModel.php';
+class EquipesController {
+    private $equipesModel;
 
-
-class EquipeController {
-    public function listar() {
-        $equipes = EquipeModel::listarEquipes();
-        // Chama a visualização para exibir a lista de Equipes
-        include 'view/equipe/index.php';
+    public function __construct() {
+        // Inicializa o modelo de equipes
+        $this->equipesModel = new EquipesModel();
     }
 
-    public function adicionar($novaEquipe) {
-        EquipeModel::adicionarEquipe($novaEquipe);
-        // Redireciona para a página de listagem de Equipes após adicionar
-        header('Location: /equipe/listar');
+    public function adicionarEquipe($lider, $nome, $pais, $patrocinadores, $pilotos) {
+        // Adiciona uma nova equipe
+        $this->equipesModel->adicionarEquipe($lider, $nome, $pais, $patrocinadores, $pilotos);
     }
 
-    public function excluir($id) {
-        EquipeModel::excluirEquipe($id);
-        // Redireciona para a página de listagem de Equipes após excluir
-        header('Location: /equipe/listar');
+    public function listarEquipes() {
+        // Lista as equipes
+        return $this->equipesModel->listarEquipes();
     }
 
-    public function atualizar($id, $novosDados) {
-        EquipeModel::atualizarEquipe($id, $novosDados);
-        // Redireciona para a página de listagem de Equipes após atualizar
-        header('Location: /equipe/listar');
+    public function excluirEquipe($indice) {
+        // Exclui uma equipe
+        $this->equipesModel->excluirEquipe($indice);
+    }
+
+    public function atualizarEquipe($indice, $novosDados) {
+        // Atualiza uma equipe
+        $this->equipesModel->atualizarEquipe($indice, $novosDados);
     }
 }
+?>

@@ -10,7 +10,7 @@
     <h1>Listar carros</h1>
     <ul>
         <?php foreach($carros as $carro): ?>
-            <li><?php echo $carro['cidade']; ?> - <?php echo $carro['distancia']; ?> - <?php echo $carro['pais']; ?>
+            <li><?php echo $carro['modelo']; ?> - <?php echo $carro['cor']; ?> - <?php echo $carro['equipe']; ?>
                 <form action="/carro/excluir/<?php echo $carro['id']; ?>" method="post" style="display: inline;">
                     <button type="submit">Excluir</button>
                 </form>

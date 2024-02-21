@@ -1,32 +1,40 @@
 <?php
-// carroModel.php
-
 // CarroModel.php
 
 class CarroModel {
-    private static $carros = array(
-        array("modelo" => "Mercedes W13", "cor" => "Prata", "ano_fabricacao" => 2023, "equipe" => "Mercedes"),
-        array("modelo" => "Red Bull RBPT", "cor" => "Vermelho", "ano_fabricacao" => 2023, "equipe" => "Red Bull"),
-        array("modelo" => "Ferrari SF23", "cor" => "Vermelho", "ano_fabricacao" => 2023, "equipe" => "Ferrari"),
-        array("modelo" => "McLaren MCL36", "cor" => "Laranja", "ano_fabricacao" => 2023, "equipe" => "McLaren"),
-        array("modelo" => "Alpine A522", "cor" => "Azul", "ano_fabricacao" => 2023, "equipe" => "Alpine"),
-    );
+    private $carros;
 
-    public static function listarCarros() {
-        return self::$carros;
+    public function __construct() {
+        // Inicializa o array de carros
+        $this->carros = array(
+            array("modelo" => "Mercedes W13", "cor" => "Prata", "ano_fabricacao" => 2023, "equipe" => "Mercedes"),
+            array("modelo" => "Red Bull RBPT", "cor" => "Vermelho", "ano_fabricacao" => 2023, "equipe" => "Red Bull"),
+            array("modelo" => "Ferrari SF23", "cor" => "Vermelho", "ano_fabricacao" => 2023, "equipe" => "Ferrari"),
+            array("modelo" => "McLaren MCL36", "cor" => "Laranja", "ano_fabricacao" => 2023, "equipe" => "McLaren"),
+            array("modelo" => "Alpine A522", "cor" => "Azul", "ano_fabricacao" => 2023, "equipe" => "Alpine"),
+        );
     }
 
-    public static function adicionarCarro($novaCarro) {
-        self::$carros[] = $novaCarro;
+    public function adicionarCarro($modelo, $cor, $ano_fabricacao, $equipe) {
+        // Adiciona um novo carro ao array
+        $this->carros[] = array("modelo" => $modelo, "cor" => $cor, "ano_fabricacao" => $ano_fabricacao, "equipe" => $equipe);
     }
 
-    public static function excluirCarro($indice) {
-        unset(self::$carros[$indice]);
-        self::$carros = array_values(self::$carros);
+    public function listarCarros() {
+        return $this->carros;
     }
 
-    public static function atualizarCarro($indice, $novosDados) {
-        self::$carros[$indice] = array_merge(self::$carros[$indice], $novosDados);
+    public function excluirCarro($indice) {
+        // Remove o carro com o índice especificado do array
+        unset($this->carros[$indice]);
+    }
+
+    public function atualizarCarro($indice, $novosDados) {
+        // Atualiza os dados do carro com o índice especificado
+        $this->carros[$indice] = $novosDados;
     }
 }
+?>
+
+
 
