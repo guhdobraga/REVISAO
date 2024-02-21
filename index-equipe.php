@@ -48,6 +48,7 @@ $equipes = $equipesController->listarEquipes();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corrida</title>
+    <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
 <div class="container">
@@ -71,7 +72,7 @@ $equipes = $equipesController->listarEquipes();
         <button type="submit" value="Enviar">Adicionar Equipe</button>
     </form>
 
-    <div class="container">
+    
     <h2>Atualizar Equipe</h2>
     <form method="POST">
         <select name="id_equipe">
@@ -100,15 +101,19 @@ $equipes = $equipesController->listarEquipes();
 </div>
 </div>
 
-<!-- Lista as equipes -->
-<h2>Lista de Equipes</h2>
-    <?php foreach ($equipes as $indice => $equipe): ?>
-        <p>Nome: <?php echo $equipe['nome']; ?>, Líder: <?php echo $equipe['lider']; ?>, País: <?php echo $equipe['pais']; ?>, Patrocinadores: <?php echo $equipe['patrocinadores']; ?>, Pilotos: <?php echo $equipe['pilotos']; ?>
-            <form action="" method="POST">
-                <input type="hidden" name="excluir_equipe" value="<?php echo $indice; ?>">
-                <button type="submit">Excluir</button>
-            </form>
-        </p>
-    <?php endforeach; ?>
+<div class="container">
+    <h2>Lista de Equipes</h2>
+    <ol>
+        <?php foreach ($equipes as $indice => $equipe): ?>
+            <li>
+                <p>Nome: <?php echo $equipe['nome']; ?>, Líder: <?php echo $equipe['lider']; ?>, País: <?php echo $equipe['pais']; ?>, Patrocinadores: <?php echo $equipe['patrocinadores']; ?>, Pilotos: <?php echo $equipe['pilotos']; ?></p>
+                <form action="" method="POST">
+                    <input type="hidden" name="excluir_equipe" value="<?php echo $indice; ?>">
+                    <button type="submit">Excluir</button>
+                </form>
+            </li>
+        <?php endforeach; ?>
+    </ol>
+</div>
 </body>
 </html>

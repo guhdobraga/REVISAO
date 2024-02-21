@@ -40,6 +40,7 @@ $pilotos = $pilotoController->listarPilotos();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corrida</title>
+    <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
 <div class="container">
@@ -63,7 +64,7 @@ $pilotos = $pilotoController->listarPilotos();
         <button type="submit" value="Enviar">Adicionar Piloto</button>
     </form>
 
-    <div class="container">
+   
     <h2>Atualizar Piloto</h2>
     <form method="POST">
         <select name="id_piloto">
@@ -92,15 +93,19 @@ $pilotos = $pilotoController->listarPilotos();
 </div>
 </div>
 
-<!-- Lista os pilotos -->
-<h2>Lista de Pilotos</h2>
-    <?php foreach ($pilotos as $indice => $piloto): ?>
-        <p>Nome: <?php echo $piloto['nome']; ?>, Idade: <?php echo $piloto['idade']; ?>, Peso: <?php echo $piloto['peso']; ?>, País: <?php echo $piloto['pais']; ?>, Equipe: <?php echo $piloto['equipe']; ?>
-            <form action="" method="POST">
-                <input type="hidden" name="excluir_piloto" value="<?php echo $indice; ?>">
-                <button type="submit">Excluir</button>
-            </form>
-        </p>
-    <?php endforeach; ?>
+<div class="container">
+    <h2>Lista de Pilotos</h2>
+    <ol>
+        <?php foreach ($pilotos as $indice => $piloto): ?>
+            <li>
+                <p>Nome: <?php echo $piloto['nome']; ?>, Idade: <?php echo $piloto['idade']; ?>, Peso: <?php echo $piloto['peso']; ?>, País: <?php echo $piloto['pais']; ?>, Equipe: <?php echo $piloto['equipe']; ?></p>
+                <form action="" method="POST">
+                    <input type="hidden" name="excluir_piloto" value="<?php echo $indice; ?>">
+                    <button type="submit">Excluir</button>
+                </form>
+            </li>
+        <?php endforeach; ?>
+    </ol>
+</div>
 </body>
 </html>

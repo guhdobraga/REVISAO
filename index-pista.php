@@ -41,6 +41,7 @@ $pistas = $pistaController->listarPistas();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pistas de Corrida</title>
+    <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
     <div class="container">
@@ -61,7 +62,7 @@ $pistas = $pistaController->listarPistas();
             <button type="submit" value="Enviar">Adicionar Pista</button>
         </form>
 
-        <div class="container">
+        
             <h2>Atualizar Pista</h2>
             <form method="POST">
                 <select name="id_pista">
@@ -87,15 +88,20 @@ $pistas = $pistaController->listarPistas();
         </div>
     </div>
 
+    <div class="container">
     <!-- Lista as pistas -->
     <h2>Lista de Pistas</h2>
-    <?php foreach ($pistas as $indice => $pista): ?>
-        <p>Cidade: <?php echo $pista['cidade']; ?>, Distância: <?php echo $pista['distancia']; ?>, País: <?php echo $pista['pais']; ?>, Idioma: <?php echo $pista['idioma']; ?>
-            <form action="" method="POST">
-                <input type="hidden" name="excluir_pista" value="<?php echo $indice; ?>">
-                <button type="submit">Excluir</button>
-            </form>
-        </p>
-    <?php endforeach; ?>
+    <ol>
+        <?php foreach ($pistas as $indice => $pista): ?>
+            <li>
+                <p>Cidade: <?php echo $pista['cidade']; ?>, Distância: <?php echo $pista['distancia']; ?>, País: <?php echo $pista['pais']; ?>, Idioma: <?php echo $pista['idioma']; ?></p>
+                <form action="" method="POST">
+                    <input type="hidden" name="excluir_pista" value="<?php echo $indice; ?>">
+                    <button type="submit">Excluir</button>
+                </form>
+            </li>
+        <?php endforeach; ?>
+    </ol>
+</div>
 </body>
 </html>

@@ -41,8 +41,9 @@ $carros = $carroController->listarCarros();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corrida</title>
+    <link rel="stylesheet" href="estilo.css">
 </head>
-<body>
+<body>  
 <div class="container">
     <h2>Adicionar Carro</h2>
     <form action="" method="POST">
@@ -61,7 +62,7 @@ $carros = $carroController->listarCarros();
         <button type="submit" value="Enviar">Adicionar Carro</button>
     </form>
 
-    <div class="container">
+        
     <h2>Atualizar Carro</h2>
     <form method="POST">
         <select name="id_carro">
@@ -86,16 +87,23 @@ $carros = $carroController->listarCarros();
     </form>
 </div>
 </div>
+<div class="container">
+    <h2>Lista de Carros</h2>
+    <ol>
+        <?php foreach ($carros as $indice => $carro): ?>
+            <li>
+                <p><strong>Modelo:</strong> <?php echo $carro['modelo']; ?></p>
+                <p><strong>Cor:</strong> <?php echo $carro['cor']; ?></p>
+                <p><strong>Ano de Fabricação:</strong> <?php echo $carro['ano_fabricacao']; ?></p>
+                <p><strong>Equipe:</strong> <?php echo $carro['equipe']; ?></p>
+                <form action="" method="POST">
+                    <input type="hidden" name="excluir_carro" value="<?php echo $indice; ?>">
+                    <button type="submit">Excluir</button>
+                </form>
+            </li>
+        <?php endforeach; ?>
+    </ol>
+</div>
 
-<!-- Lista os carros -->
-<h2>Lista de Carros</h2>
-    <?php foreach ($carros as $indice => $carro): ?>
-        <p>Modelo: <?php echo $carro['modelo']; ?>, Cor: <?php echo $carro['cor']; ?>, Ano de Fabricação: <?php echo $carro['ano_fabricacao']; ?>, Equipe: <?php echo $carro['equipe']; ?>
-            <form action="" method="POST">
-                <input type="hidden" name="excluir_carro" value="<?php echo $indice; ?>">
-                <button type="submit">Excluir</button>
-            </form>
-        </p>
-    <?php endforeach; ?>
 </body>
 </html>

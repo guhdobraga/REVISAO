@@ -82,6 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corrida</title>
+    <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
 <div class="container">
@@ -121,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit" value="Enviar">Adicionar Corrida</button>
     </form>
 
-    <div class="container">
+  
     <h2>Atualizar Corrida</h2>
     <form method="POST">
         <select name="id">
@@ -166,16 +167,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 </div>
 
-<!-- Lista as corridas -->
-<h2>Lista de Corridas</h2>
-    <?php foreach ($corridas as $indice => $corrida):;?>
-        <p>pista: <?php echo $corrida['pista']; ?>, Cor: <?php echo $corrida['data']; ?>,Pilotos: <?php echo $corrida['pilotos']; ?>,Carros: <?php echo $corrida['carros']; ?>, Equipe: <?php echo $corrida['equipe']; ?>
-            <form action="" method="POST">
-                <input type="hidden" name="excluir_corrida" value="<?php echo $indice; ?>">
-                <button type="submit">Excluir</button>
-            </form>
-        </p>
-    <?php endforeach; ?>
+<div class="container">
+    <h2>Lista de Corridas</h2>
+    <ol>
+        <?php foreach ($corridas as $indice => $corrida): ?>
+            <li>
+                <p>pista: <?php echo $corrida['pista']; ?>, Cor: <?php echo $corrida['data']; ?>, Pilotos: <?php echo $corrida['pilotos']; ?>, Carros: <?php echo $corrida['carros']; ?>, Equipe: <?php echo $corrida['equipe']; ?></p>
+                <form action="" method="POST">
+                    <input type="hidden" name="excluir_corrida" value="<?php echo $indice; ?>">
+                    <button type="submit">Excluir</button>
+                </form>
+            </li>
+        <?php endforeach; ?>
+    </ol>
+</div>
 </body>
 </html>
 
